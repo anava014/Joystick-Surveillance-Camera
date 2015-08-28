@@ -22,7 +22,7 @@ String reading = "";
 int value = 0;
 
 byte mac[] = {  0x98, 0x4F, 0xEE, 0x00, 0x0B, 0xD3 };
-IPAddress server(10,0,0,4); // Ip Address of Host Galileo
+IPAddress server(10,0,0,3); // Ip Address of Host Galileo
 EthernetClient client;
 
 void setup() {
@@ -38,7 +38,7 @@ void setup() {
   myservo.write(pos);
 }
 
-void boundaryCheck(){
+void boundaryCheck(){ // So it wont rotate servo motor past its limit.
   if(pos > 180)
     pos = 180;
   if(pos < 5)
@@ -50,7 +50,7 @@ int getReading(){
   if (client.connect(server, 80)) {
     client.println("GET /request.txt HTTP/1.1");
     client.print( "Host: " );
-    client.println( "10.0.0.4" );
+    client.println( "10.0.0.3" );
     
     client.println();
     client.println();
